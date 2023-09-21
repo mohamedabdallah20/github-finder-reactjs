@@ -8,22 +8,39 @@ const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN
 export const GithubProvider = ({ children }) => {
   const initialState = {
     users: [],
-    loading: true,
+    loading: false,
   }
 
   const [state, dispatch] = useReducer(GithubReducer, initialState)
-  const fetchUsers = async () => {
-    const res = await fetch(`${GITHUB_API_URL}/users`, {
+
+  // search github users
+  const searchUsers = async (user) => {
+    dispatch({
+      type: 'SET_LOADING',
+    })
+    const params = new URLSearchParams({
+      q: user,
+    })
+    const res = await fetch(`${GITHUB_API_URL}/search/users?${params}`, {
       headers: {
         Authorization: `token ${GITHUB_TOKEN}`,
       },
     })
-    const data = await res.json()
+    const { items } = await res.json()
     dispatch({
       type: 'GET_USERS',
-      payload: data,
+      payload: items,
     })
-    // console.log(users)
+  }
+
+  // clear users
+  const clearUsers = () => {
+    dispatch({
+      type: 'SET_LOADING',
+    })
+    dispatch({
+      type: 'CLEAR_USERS',
+    })
   }
 
   return (
@@ -31,7 +48,8 @@ export const GithubProvider = ({ children }) => {
       value={{
         users: state.users,
         loading: state.loading,
-        fetchUsers,
+        searchUsers,
+        clearUsers,
       }}
     >
       {children}
