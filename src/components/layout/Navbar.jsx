@@ -10,6 +10,19 @@ function Navbar({ title }) {
           <Link to="/" className="text-lg font-bold align-middle">
             {title}
           </Link>
+          <div>
+            <div className="text-xs">
+              Created by
+              <a
+                href="https://github.com/mohamedabdallah20"
+                target="_blank"
+                rel="noreferrer"
+                className="text-xs font-bold align-middle"
+              >
+                Mohamed Abdallah
+              </a>
+            </div>
+          </div>
         </div>
 
         <div className="flex-1 px-2 mx-2">

@@ -111,7 +111,7 @@ function User() {
                     <div className="stat-title text-md">Twitter</div>
                     <div className="text-lg stat-value">
                       <a
-                        href={'https:twitter.com/' + twitter_username}
+                        href={`https://twitter.com/${twitter_username}`}
                         target="_blank"
                         rel="noreferrer"
                         // className="btn btn-outline"
