@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaEye, FaInfo, FaLink, FaStar, FaUtensils } from 'react-icons/fa'
+import { FaEye, FaInfo, FaLink, FaStar } from 'react-icons/fa'
 
 function RepoItem({ repo }) {
   const {
@@ -9,7 +9,7 @@ function RepoItem({ repo }) {
     forks,
     open_issues,
     watchers_count,
-    stargazers_count,
+    // stargazers_count,
   } = repo
   return (
     <div className="mb-2 rounded-md card bg-gray-800 hover:bg-gray-900 ">
