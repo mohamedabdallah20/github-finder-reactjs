@@ -5,30 +5,21 @@ import { FaCodepen, FaStore, FaUserFriends, FaUsers } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import Spinner from '../components/layout/Spinner'
 import RepoLis from '../components/layout/repos/RepoList'
-import { getUser, getRepos } from '../context/github/GithubActions'
+import { getUserAndRepos } from '../context/github/GithubActions'
 
 function User() {
   const { user, loading, repos, dispatch } = useContext(GithubContext)
   const params = useParams()
   useEffect(() => {
     dispatch({ type: 'SET_LOADING' })
-    const getUserData = async () => {
-      const user = await getUser(params.login)
+    const getUserAndReposData = async () => {
+      const data = await getUserAndRepos(params.login)
       dispatch({
-        type: 'GET_USER',
-        payload: user,
+        type: 'GET_USER_AND_REPOS',
+        payload: data,
       })
     }
-    const getReposData = async () => {
-      const repos = await getRepos(params.login)
-      dispatch({
-        type: 'GET_REPOS',
-        payload: repos,
-      })
-    }
-
-    getUserData()
-    getReposData()
+    getUserAndReposData()
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, params.login])
