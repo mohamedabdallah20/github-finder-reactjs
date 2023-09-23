@@ -12,15 +12,13 @@ function Navbar({ title }) {
           </Link>
           <div>
             <div className="text-xs">
-              Created by
-              <a
-                href="https://github.com/mohamedabdallah20"
-                target="_blank"
-                rel="noreferrer"
-                className="text-xs font-bold align-middle"
+              Created by :
+              <Link
+                to="/user/mohamedabdallah20"
+                className="btn btn-ghost btn-sm rounded-btn mx-px px-0 "
               >
                 Mohamed Abdallah
-              </a>
+              </Link>
             </div>
           </div>
         </div>
