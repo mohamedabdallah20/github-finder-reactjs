@@ -4,12 +4,15 @@ import { useParams } from 'react-router-dom'
 import { FaCodepen, FaStore, FaUserFriends, FaUsers } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import Spinner from '../components/layout/Spinner'
+import RepoLis from '../components/layout/repos/RepoList'
 
 function User() {
-  const { user, getUser, loading } = useContext(GithubContext)
+  const { user, getUser, loading, repos, getRepos } = useContext(GithubContext)
   const params = useParams()
   useEffect(() => {
     getUser(params.login)
+    getRepos(params.login)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const {
@@ -150,6 +153,7 @@ function User() {
               </div>
             </div>
           </div>
+          <RepoLis repos={repos} />
         </div>
       </>
     )
